@@ -67,6 +67,10 @@ def scrape_song():
         filename = input("Enter filename: ")
     global path
     path = os.path.join(song_path, filename, filename + ".txt")
+    while not os.path.exists(path):
+        print(f"Can't find the file {filename}.txt in the folder {os.path.join(song_path, filename)}!")
+        print("Make sure the file is in the correct folder and that the filename in the config is correct.")
+        input("Press enter to try again.")
     file = open(path, "r", encoding='utf-8')
     lines = file.readlines()
     if overwrite_file:
